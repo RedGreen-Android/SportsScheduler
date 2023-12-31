@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="sports"
+            type="com.example.sportsscheduler.model.ScheduleData" />
+
+        <variable
+            name="game"
+            type="com.example.sportsscheduler.model.Game" />
+
+
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:clipToPadding="true"
+        app:cardCornerRadius="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_name_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="90dp"
+                android:text="@{sports.team.name}"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Atlanta" />
+
+            <TextView
+                android:id="@+id/tv_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@{sports.team.record}"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name_regular"
+                app:visibility='@{sports.gameSection[0].game[0].type == "F" || sports.gameSection[0].game[0].type == "B" ? View.GONE : View.VISIBLE}'
+                tools:text="20-1" />
+
+            <TextView
+                android:id="@+id/tv_date_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:isoDateToFormattedDate="@{sports.gameSection[0].game[0].date.Timestamp}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_record"
+                tools:text="Mon, Sept 20" />
+
+            <ImageView
+                android:id="@+id/iv_icon_home"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="10dp"
+                app:imageUrl="@{sports.team.triCode.toLowerCase()}"
+                app:layout_constraintEnd_toStartOf="@id/tv_at_symbol"
+                app:layout_constraintBottom_toTopOf="@+id/tv_week" />
+
+            <TextView
+                android:id="@+id/tv_at_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/atSymbol"
+                android:textColor="@color/grey"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintBottom_toTopOf="@+id/tv_week"
+                tools:text=" @ " />
+
+            <ImageView
+                android:id="@+id/iv_icon_away"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                app:imageUrl="@{sports.gameSection[0].game[0].opponent.TriCode.toLowerCase()}"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintBottom_toTopOf="@+id/tv_week" />
+
+            <TextView
+                android:id="@+id/tv_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@{sports.gameSection[0].game[0].week}"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/tv_record"
+                tools:text="Week 1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/tv_epsn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@{sports.gameSection[0].game[0].TV}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_date_regular"
+                tools:text="ESPN" />
+
+            <TextView
+                android:id="@+id/tv_name_regular_opp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="90dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:text="@{sports.gameSection[0].game[0].opponent.name}"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Falcon" />
+
+            <TextView
+                android:id="@+id/tv_record_opp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:text="@{sports.gameSection[0].game[0].opponent.record}"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name_regular_opp"
+                app:visibility='@{sports.gameSection[0].game[0].type == "F" || sports.gameSection[0].game[0].type == "B" ? View.GONE : View.VISIBLE}'
+                tools:text="20-1" />
+
+            <TextView
+                android:id="@+id/tv_date_regular_opp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:text="@{sports.gameSection[0].game[0].date.time}"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_record"
+                tools:text="7:10 PM" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

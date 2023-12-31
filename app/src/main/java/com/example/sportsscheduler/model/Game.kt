@@ -1,0 +1,30 @@
+package com.example.sportsscheduler.model
+
+data class Game(
+    val AwayScore: String,
+    val Buttons: List<Button>,
+    val CardData: CardData,
+    val Clock: String,
+    val Date: Date,
+    val Down: String,
+    val GameState: String,
+    val Home: Boolean,
+    val HomeScore: String,
+    val Id: Int,
+    val IsHome: Boolean,
+    val IsSuperStadium: Boolean,
+    val Label: String,
+    val Opponent: Opponent,
+    val Quarter: String,
+    val QuarterShorthand: String,
+    val Radio: String,
+    val Result: String,
+    val ScheduleHeader: String,
+    val SecondaryButtons: List<Any>,
+    val TV: String,
+    val Tickets: Tickets,
+    val Type: String,
+    val Venue: String,
+    val WLT: String,
+    val Week: String
+)

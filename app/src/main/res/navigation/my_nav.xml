@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/scheduleFragment">
+
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.example.sportsscheduler.ui.ScheduleFragment"
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_scheduleFragment_to_newFragment"
+            app:destination="@id/newFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newFragment"
+        android:name="com.example.sportsscheduler.ui.NewFragment"
+        android:label="fragment_new"
+        tools:layout="@layout/fragment_new" />
+</navigation>
